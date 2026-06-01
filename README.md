@@ -1,2 +1,12 @@
 # Histopathological-Image-Analysis-for-Cancer-Detection-and-Segmentation
 This project demonstrates a comprehensive workflow for analyzing histopathological images, focusing on nuclear segmentation and breast cancer metastasis detection. It leverages transfer learning, advanced image preprocessing, and explainable AI techniques (Grad-CAM) to build and interpret robust deep learning models.
+
+
+
+**Dataset Integration & Preprocessing:** Utilizes three distinct histopathological datasets: `CryoNuSeg` (for cryosectioned H&E images), `MoNuSeg` (for nuclei segmentation in various tissues), and `PCam` (for breast cancer metastasis detection in lymph node sections). Includes custom data loading, cleaning, and augmentation pipelines, with an optional denoising step for PCam images.
+**Nuclear Segmentation with ResNet-UNet:** Implements and trains a ResNet34-based UNet architecture for precise nuclear segmentation on the `CryoNuSeg` dataset. The model incorporates Dice loss, BCE loss, and a boundary loss component for enhanced segmentation accuracy. Early stopping and validation are used to optimize training.
+**Transfer Learning for Cancer Detection:** Develops a `PCamModel` utilizing a ResNet34 backbone. This model's backbone is initialized with weights pre-trained on the `MoNuSeg` segmentation task, demonstrating effective transfer learning from a related domain. The model is then fine-tuned on the `PCam` dataset for binary classification of cancer metastases.
+**Class Imbalance Handling:** Employs Focal Loss as the training criterion for the `PCamModel` to address the inherent class imbalance often found in medical datasets, ensuring the model effectively learns from both positive and negative samples.
+**Model Evaluation:** Provides comprehensive evaluation metrics for both segmentation (Dice, IoU) and classification (Sensitivity, Specificity, ROC-AUC, Confusion Matrix), allowing for a thorough understanding of model performance.
+**Explainable AI with Grad-CAM:** Integrates a custom `GradCAM` implementation to visualize the regions of input images that are most influential for the `PCamModel`'s classification decisions. This provides crucial insights into the model's reasoning, enhancing trust and interpretability, especially in medical contexts.
+**Quantitative Grad-CAM Analysis:** Introduces a method to quantify Grad-CAM focus intensity, providing a numerical measure of how concentrated the model's attention is on specific regions of interest. This aids in understanding and comparing model behavior across different predictions.
