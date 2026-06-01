@@ -25,7 +25,7 @@ def set_seed(seed_value=42):
 set_seed(42)
 print("Random seed set to 42 for reproducibility.")
 
-mkdir -p ~/.kaggle && echo KGAT_fe074232bef2df99810ea8dccbd20756 > ~/.kaggle/access_token && chmod 600 ~/.kaggle/access_token
+mkdir -p ~/.kaggle && echo #kaggle api 
 
 !kaggle datasets download -d ipateam/segmentation-of-nuclei-in-cryosectioned-he-images
 !kaggle datasets download -d tuanledinh/monuseg2018
@@ -2586,7 +2586,7 @@ This project demonstrates a comprehensive workflow for analyzing histopathologic
 
 ### Key Features:
 
-*   **Dataset Integration & Preprocessing:** Utilizes three distinct histopathological datasets: `CryoNuSeg` (for cryosectioned H&E images), `MoNuSeg` (for nuclei segmentation in various tissues), and `PCam` (for breast cancer metastasis detection in lymph node sections). Includes custom data loading, cleaning, and augmentation pipelines, with an optional denoising step for PCam images.
+*   **Dataset Integration & Preprocessing:** Utilizes three distinct histopathological datasets: `CryoNuSeg` (for cryosectioned H&E images from various tissues), `MoNuSeg` (for nuclei segmentation in breast cancer), and `PCam` (for breast cancer metastasis detection in lymph node sections). Includes custom data loading, cleaning, and augmentation pipelines, with an optional denoising step for PCam images.
 *   **Nuclear Segmentation with ResNet-UNet:** Implements and trains a ResNet34-based UNet architecture for precise nuclear segmentation on the `CryoNuSeg` dataset. The model incorporates Dice loss, BCE loss, and a boundary loss component for enhanced segmentation accuracy. Early stopping and validation are used to optimize training.
 *   **Transfer Learning for Cancer Detection:** Develops a `PCamModel` utilizing a ResNet34 backbone. This model's backbone is initialized with weights pre-trained on the `MoNuSeg` segmentation task, demonstrating effective transfer learning from a related domain. The model is then fine-tuned on the `PCam` dataset for binary classification of cancer metastases.
 *   **Class Imbalance Handling:** Employs Focal Loss as the training criterion for the `PCamModel` to address the inherent class imbalance often found in medical datasets, ensuring the model effectively learns from both positive and negative samples.
